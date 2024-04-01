@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+<script src="{% static "script/tailwindcss.js" %}"></script>
+<script src="{% static "style/style.css" %}"></script>
+
+    <title>Family and friends | Courses</title>
+    <style>
+        .one{
+            opacity: 0;
+            transition: all 1s ;
+       
+        
+           
+          }
+          .oneshow{
+            opacity: 1;
+            
+          }
+        html{
+            scroll-behavior: smooth;
+            scroll-padding: 10rem;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .overview {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-bottom: 2px solid #222;
+        }
+
+        .overview h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        .overview p {
+            margin: 10px 0 0;
+            font-size: 16px;
+        }
+
+        .course-list {
+            background-color: #444;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .course-list a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .course-list a::after{
+            content: " |";
+        }
+        .course-list a:nth-child(6)::after{
+            content: "";
+        }
+
+        .teacher-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 8px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .course-details {
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px;
+        }
+
+        .course-details h2 {
+            margin-top: 0;
+        }
+
+        .course-details p {
+            margin-top: 10px;
+        }
+        .course-details:has(h2,img,p):hover{
+            cursor: pointer;
+
+        }
+        .animate__animated {
+            animation-duration: 1s;
+            animation-fill-mode: both;
+        }
+
+        .animate__fadeInUp {
+            animation-name: fadeInUp;
+        }
+    </style>
+</head>
+<body>
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <img src="{% static "images/logo.jpg" %}" class="w-[100px] h-[30px]" />
+                </div>
+                <div class="hidden md:flex">
+                    <ul class="flex space-x-6">
+                        <li><a href="/" class="text-gray-600 hover:text-gray-400">Home</a></li>
+                        <li><a href="about" class="text-gray-600 hover:text-gray-400">About</a></li>
+                        {% comment %} <li><a href="#" class="text-gray-600 hover:text-gray-400">Contact</a></li> {% endcomment %}
+                        <li><a href="course" class="text-gray-600 hover:text-gray-400">Courses</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="#" class="text-gray-600 hover:text-gray-400">Welcome {{user.username}}</a></li>
+                        <li><a href="logout" class="text-gray-600 hover:text-gray-400">Logout</a></li>
+                        {% else %}
+                        <li><a href="login" class="text-gray-600 hover:text-gray-400">Login</a></li>
+                        <li><a href="register" class="text-gray-600 hover:text-gray-400">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="focus:outline-none">
+                        <svg class="h-6 w-6 text-gray-800" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="bg-white">
+                <li><a href="/" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a></li>
+                <li><a href="about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a></li>
+                {% comment %} <li><a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Contact</a></li> {% endcomment %}
+                <li><a href="course" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Courses</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Welcome {{user.username}}</a></li>
+                <li><a href="logout" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Logout</a></li>
+                        {% else %}
+                        <li><a href="login" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Login</a></li>
+                        <li><a href="register" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Register</a></li>
+                        {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <div class="overview">
+        <h1>Our Courses</h1>
+        <p>Our academy offers comprehensive English language courses tailored to different proficiency levels. Our dedicated teachers ensure a supportive learning environment for all students.</p>
+    </div>
+
+
+    {% for course in courses %}
+    <div class="course-details one animate__animated animate__fadeInUp">
+        <h2>{{ course.name }}</h2>
+        <img src="{{ course.image.url }}" alt="Teacher" class="teacher-photo">
+        <p>{{ course.body }}</p>
+    </div>
+    {% endfor %}
+   
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        const observe = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        console.log(entry)
+        if(entry.isIntersecting){
+            entry.target.classList.add('oneshow')
+        }
+        else{
+            entry.target.classList.remove('oneshow')
+        }
+    })
+})
+const one = document.querySelectorAll('.one');
+one.forEach((el)=>observe.observe(el))
+    </script>
+</body>
+</html>

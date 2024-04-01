@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        
+        .navbar {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .logo img {
+            width: 100px; /* Adjust as needed */
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .nav-links li a:hover {
+            text-decoration: underline;
+        }
+
+        .login-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin: 20px auto;
+            margin-top: 25vh; 
+            transition: transform 0.5s ease;
+        }
+        .login-container:hover{
+            transform: scale(1.05);
+        }
+
+        .login-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"],
+        .login-container input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .login-container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .register-link{
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+        @media (max-width:500px) {
+            .nav-links{
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a class="logo" href="#">
+        <img src="{% static "images/logo.jpg" %}" class="w-[100px] h-[30px]" />
+
+    <ul class="nav-links">
+        <li class="items-nav"><a href="\">Home</a></li>
+        <li class="items-nav"><a href="login">Log in</a></li>
+    </ul>
+</div>
+
+<div class="login-container">
+    {% if user.is_authenticated %}
+    <h2>You already login</h2>
+
+    {% else %}
+    <h2>Register</h2>
+    <form action="#" method="post">
+        {% csrf_token %}
+        
+        {% for message in messages %}
+        <h3>{{message}}</h3>
+        {% endfor %}
+        <input type="text" name="username" placeholder="Username" required maxlength="20" minlength="5">
+        <input type="email" name="email" placeholder="example@gmail.com" required maxlength="40">
+        <input type="password" name="password" placeholder="Password" required maxlength="20" minlength="8">
+        <input type="password" name="repassword" placeholder=" Re-enter Password" required maxlength="20" minlength="8">
+
+        <input type="submit" value="register">
+    </form>
+    <div class="register-link">
+        <span>Have an account? <a href="login">Login now</a></span>
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

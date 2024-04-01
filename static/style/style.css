@@ -1,0 +1,50 @@
+ 
+        ul li{
+            margin-right: 10px;
+            
+        }
+        ul li a{
+            color: orange;
+        }
+        h3{
+            font-size: 20px;
+        }
+        .content{
+            margin-left: 20px;
+        }
+      @keyframes fade {
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 1;
+        }
+        
+      }
+      .one{
+        opacity: 0;
+        transition: all 1s ;
+   
+    
+       
+      }
+      .oneshow{
+        opacity: 1;
+        
+      }
+/* Second one */
+      .two{
+        opacity: 0;
+        filter: blur(5px);
+        transform: translateX(-100%);
+        transition: all 1s ;
+      }
+      .twoshow{
+        opacity: 1;
+        filter: blur(0);
+        transform: translateX(0);
+      }
+.card p{
+    display: inline-block;
+}
+

@@ -1,0 +1,458 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{% static "images/logo.jpg" %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static "style/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "style/style.css" %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+    {% comment %} <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}"> {% endcomment %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="{% static "script/tailwindcss.js" %}"></script>
+
+<style>
+    nav{
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        background:whitesmoke;
+    }
+
+    .content{
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+    }
+    img{
+        margin-bottom:5px;
+    }
+    .code{
+        display: flex;
+        align-items: center;
+        height: 85vh;
+justify-content: space-evenly;
+    }
+    @media (max-width:591px) {
+        .code{
+            display: block;
+        }
+        .code img{
+            margin-top: 20px;
+          height: 250px;
+           
+        }
+        .code a{
+          position: relative;
+          left: 70px;
+        }
+     
+        
+    }
+    @media (max-width:500px) {
+            .login{
+                display: none;
+            }
+            .py{margin-right: 200px;padding: 10px;display: flex;justify-content: center;}
+            
+        }
+        .course-card {
+    position: relative;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.overlay-content {
+    text-align: center;
+    padding: 20px;
+}
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  /* Style for the paragraph with typing animation */
+  .typing-animation {
+    overflow: hidden; /* Ensures the text is hidden until revealed by the animation */
+    border-right: .08em solid orange; /* Adjusted cursor size */
+    white-space: nowrap; /* Ensures the text is typed on a single line */
+    margin: 0; /* Reset margin */
+    animation: typing 1.5s steps(40) infinite alternate; /* Adjusted timing */
+  }
+.course-card:hover .overlay {
+    opacity: 1;
+}
+.footer a {
+      color: #ffffff;
+    }
+
+    .footer-social {
+      font-size: 24px;
+    }
+
+    .footer-social i {
+      margin: 0 10px;
+    }
+
+    .footer-contact {
+      font-size: 18px;
+    }
+
+    .footer-copyright {
+      font-size: 20px;
+      text-align: center;
+    }
+/*Image slider coding*/
+
+
+.slider{
+    position: relative;
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    margin-top:20px;
+}
+.slider img{
+    width: 500px;
+    height:500px;
+    display: none;
+    margin-left: 400px;
+    cursor: pointer;
+}
+@media (max-width:500px) {
+    .slider img{
+        margin-left: 0;
+    }
+}
+img.displaySlide{
+    display: block;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+ul li a::after{
+  content: "";
+  position: absolute;
+  background-color: #ff3c78;
+height: 3px;
+width: 0;
+left: 0;
+left: 0;
+bottom: -10px;
+transition: 0.3s;
+}
+
+ul li a:hover::after{
+  width: 100%;
+}
+
+#scrollBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: transparent;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      padding: 20px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+.slider button{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    padding: 10px 15px;
+    background-color: hsla(0, 0%, 0%, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.prev{
+    left: 0;
+}
+.next{
+    right: 0;
+}
+@keyframes fade {
+    from {opacity: .5}
+    to {opacity: 1}
+}
+.footer{
+    padding: 20px;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+.Copyright{
+    
+    text-align: center;
+}
+
+.join:hover{
+    padding: 5px;
+    background: black;
+
+    transition: 1s;
+}
+</style>
+    <title>Family and friends</title>
+</head>
+<body>
+    <nav class="bg-white shadow-lg">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div>
+                    <img src="{% static "images/logo.jpg" %}" class="w-[100px] h-[30px]" id="profile"/>
+                </div>
+                <div class="hidden md:flex">
+                    <ul class="flex space-x-6">
+                        <li><a href="/" class="text-gray-600 hover:text-gray-400">Home</a></li>
+                        <li><a href="about" class="text-gray-600 hover:text-gray-400">About</a></li>
+               
+                        <li><a href="course" class="text-gray-600 hover:text-gray-400">Courses</a></li>
+                        {% if user.is_authenticated %}
+                        <li><a href="#" class="text-gray-600 hover:text-gray-400">Welcome {{user.username}}</a></li>
+                        <li><a href="logout" class="text-gray-600 hover:text-gray-400">Logout</a></li>
+                        {% else %}
+                        <li><a href="login" class="text-gray-600 hover:text-gray-400">Login</a></li>
+                        <li><a href="register" class="text-gray-600 hover:text-gray-400">Register</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="focus:outline-none">
+                        <svg class="h-6 w-6 text-gray-800" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <ul class="bg-white">
+                <li><a href="/" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Home</a></li>
+                <li><a href="about" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">About</a></li>
+             
+                <li><a href="course" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Courses</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="#" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Welcome {{user.username}}</a></li>
+                <li><a href="logout" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Logout</a></li>
+                        {% else %}
+                        <li><a href="login" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Login</a></li>
+                        <li><a href="register" class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100">Register</a></li>
+                        {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <section class="one mb-[30px] code animate__animated animate__fadeInUp">
+        <div class="sm:flex justify-between px-4 pt-12 pl-4 code mt-[50px] align-center block">
+            <div class="text mt-[50px]">
+                <h4 class="text-blue-400 font-[30px] mb-[20px]" style="font-size: 25px;">Family and Friends</h4>
+                <p class="pt-2 mb-[25px] typing-animation">Giving a high quality and advanced study and creative</p>
+    
+                <a href="join" style="padding: 10px; background: blue;border-radius: 8px; color: white;" class="join">Register to Join</a>
+            </div>
+            <div class="py">
+                <img src="{% static "images/logo.jpg"%}" class="mx-auto front-image w-full max-w-xs lg:max-w-none rounded-lg mb-4 lg:mx-0 lg:w-64 xl:w-72 shadow-lg p-4" id="profile_pic" >
+
+            </div>
+        </div>
+    </section>
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 one cursor-pointer">
+        {% for course in courses %}
+        <div class="max-w-sm rounded overflow-hidden shadow-lg course-card relative transition duration-300 transform hover:scale-105">
+            <img class="w-full h-56 object-cover object-center" src="{{ course.image.url }}" alt="{{ course.name }}">
+            <div class="overlay absolute inset-0 flex justify-center items-center opacity-0 transition-opacity duration-300 bg-black bg-opacity-50 text-white">
+                <div class="overlay-content text-center">
+                    <h3 class="text-xl font-semibold text-blue-500">{{ course.name }}</h3>
+                    <p class="text-white">{{ course.body }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    
+
+    
+    
+
+
+    <section class="one">
+        <div class="slider relative overflow-hidden">
+            <div class="slides flex">
+                <img class="slide one animate-fade-in" src="{% static "images/students.jpg"%}" alt="Image #1">
+                <img class="slide one animate-fade-in" src="{% static "images/students.jpg"%}" alt="Image #2">
+                <img class="slide one animate-fade-in" src="{% static "images/logo.jpg"%}" alt="Image #3">
+            </div>
+            <button class="prev absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white px-4 py-2 rounded-l-md" onclick="prevSlide()">&#10094;</button>
+            <button class="next absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 bg-opacity-50 hover:bg-opacity-75 text-white px-4 py-2 rounded-r-md" onclick="nextSlide()">&#10095;</button>
+        </div>
+    </section>
+    
+
+<footer class="bg-gray-800 p-6">
+    <div class="container mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div>
+
+            <h4 class="text-orange-500">Website Created by Shameel and Jaza</h4>
+            <h4 class="text-orange-500">Total Visitor <span id="visitorCount"></span></h4>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-bold mb-2 text-white">Services</h3>
+          <ul>
+            <li><a href="#" class="hover:text-gray-400">Web Design</a></li>
+            <li><a href="#" class="hover:text-gray-400">Graphic Design</a></li>
+            <li><a href="#" class="hover:text-gray-400">Digital Marketing</a></li>
+            <li><a href="#" class="hover:text-gray-400">SEO</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-2 text-white">Contact Us</h3>
+          <p class="text-orange-500">Punnakuda street, Eravur, Srilanka</p>
+          <p class="text-orange-500">Email: armfazil@gmail.com</p>
+          <p class="text-orange-500">Phone: +94 77 004 8614</p>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold mb-2 text-white">Follow Us</h3>
+          <div class="flex space-x-4">
+            <a href="https://web.facebook.com/ictevr/?_rdc=1&_rdr" class="text-white hover:text-gray-400"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white hover:text-gray-400"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <button onclick="scrollToTop()" id="scrollBtn" title="Go to top" style="background-color: #007bff; float: right;">⬆️</button>
+
+<!--JavaScript-->
+<script>
+     // First one
+ const observe = new IntersectionObserver((entries)=>{
+    entries.forEach((entry)=>{
+        console.log(entry)
+        if(entry.isIntersecting){
+            entry.target.classList.add('oneshow')
+        }
+        else{
+            entry.target.classList.remove('oneshow')
+        }
+    })
+})
+const one = document.querySelectorAll('.one');
+one.forEach((el)=>observe.observe(el))
+document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+// Image Slider Coding
+
+
+const slides = document.querySelectorAll(".slides img");
+let slideIndex = 0;
+let intervalId = null;
+
+document.addEventListener("DOMContentLoaded", initializeSlider);
+
+function initializeSlider(){
+    if(slides.length > 0){
+        slides[slideIndex].classList.add("displaySlide");
+        intervalId = setInterval(nextSlide, 5000);
+    }
+}
+
+function showSlide(index){
+    if(index >= slides.length){
+        slideIndex = 0;
+    }
+    else if(index < 0){
+        slideIndex = slides.length - 1;
+    }
+
+    slides.forEach(slide => {
+        slide.classList.remove("displaySlide");
+    });
+    slides[slideIndex].classList.add("displaySlide");
+}
+
+function prevSlide(){
+    clearInterval(intervalId);
+    slideIndex--;
+    showSlide(slideIndex);
+}
+
+function nextSlide(){
+    slideIndex++;
+    showSlide(slideIndex);
+}
+
+// Scrool
+window.addEventListener("scroll",()=>{
+    document.querySelector("nav").style.background = 'gray'
+})
+
+// Total Visitors
+if (localStorage.getItem('visitorCount') === null) {
+      // If not, initialize the count to 0
+      localStorage.setItem('visitorCount', 0);
+    }
+
+    // Increment the visitor count
+    const currentCount = parseInt(localStorage.getItem('visitorCount'), 10) + 1;
+    localStorage.setItem('visitorCount', currentCount);
+
+    // Display the visitor count on the page
+    const visitorCountElement = document.getElementById('visitorCount');
+    visitorCountElement.textContent = `Total Visits: ${currentCount}`;
+
+    // Scroll to Top button
+    function scrollToTop() {
+
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE, and Opera
+    }
+    window.onscroll = function() { scrollFunction() };
+
+function scrollFunction() {
+  var scrollBtn = document.getElementById("scrollBtn");
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    scrollBtn.style.display = "block";
+  } else {
+    scrollBtn.style.display = "none";
+  }
+}
+
+// Change transition
+const profile_pic = document.getElementById('profile_pic');
+    const pixels = ['50px', '20px', '60px', '10px', '30px', '40px', '50%', '100px', '200px'];
+
+    setInterval(() => {
+        const output = pixels[Math.floor(Math.random() * pixels.length)];
+        console.log(output);
+        profile_pic.style.borderRadius = output;
+    }, 1000);
+</script>
+</body>
+</html>
